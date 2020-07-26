@@ -17,10 +17,10 @@ sig
   (** [add_vertex v g] adds a vertex [v] into the graph [g]. *)
   val add_vertex : vertex -> t -> t
 
-  (** [add_edge u v g] adds an edge from [u] to [v] into the graph [g]. The two vertices must be already in the graph. *)
+  (** [add_edge u v g] adds an edge from [u] to [v] into the graph [g]. The two vertices must be already in the graph, or [Not_found] will be raised. *)
   val add_edge : vertex -> vertex -> t -> t
 
-  (** [reachable u v g] tests whether there is a path from [u] to [v] in the transitive closure of [g]. *)
+  (** [reachable u v g] tests whether there is a path from [u] to [v] in the transitive closure of [g]. (This means reachability is always reflexive.) If either vertex is not in the graph, [Not_found] will be raised. *)
   val reachable : vertex -> vertex -> t -> bool
 end
 
