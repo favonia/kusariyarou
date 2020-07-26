@@ -23,17 +23,19 @@ let dumb_reachable start target edges =
   in
   go target edges (IntSet.singleton start)
 
-let vertices = List.init ~len:15 ~f:Fun.id
+let vertices = List.init ~len:10 ~f:Fun.id
 let empty_graph = List.fold_left ~f:(fun g v -> IntGraph.add_vertex v g) ~init:IntGraph.empty vertices
 
 let test_reachability =
-  QCheck_alcotest.to_alcotest @@
+  QCheck_alcotest.to_alcotest ~verbose:true @@
   let vertice_generator = QCheck.(choose @@ List.map ~f:always vertices) in
   QCheck.Test.make ~count:10000 ~name:"all-pair reachability"
-    QCheck.(small_list @@ pair vertice_generator vertice_generator) @@ fun edges ->
+    QCheck.(
+      let edge_lists = small_list @@ pair vertice_generator vertice_generator in
+      pair edge_lists edge_lists
+    ) @@ fun (edges, tests) ->
   let graph = List.fold_left ~f:(fun g (u, v) -> IntGraph.add_edge u v g) ~init:empty_graph edges in
-  Fun.flip Stdlib.List.for_all vertices @@ fun u ->
-  Fun.flip Stdlib.List.for_all vertices @@ fun v ->
+  Fun.flip Stdlib.List.for_all tests @@ fun (u, v) ->
   IntGraph.reachable u v graph == dumb_reachable u v edges
 
 let () =
