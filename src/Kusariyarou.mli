@@ -1,5 +1,10 @@
-(** This library is based on "Amortized Efficiency of a Path Retrieval Data Structure" by G.F. Italiano, probably with O(log n) slowdown. *)
+(**
+   This library is based on "Amortized Efficiency of a Path Retrieval Data Structure" by G.F. Italiano, probably with O(log n) slowdown due to the use of {!module:Map}. This is intended to be used in the cases where graphs are relatively small.
 
+   The amortized bound in general does not hold if one forks a graph (for example, adding different edges to the same graph to generate different graphs). However, due to its simplicity, the algorithm should be fine for small graphs.
+*)
+
+(** The interface of a graph. *)
 module type S =
 sig
   (** The type of directed graphs. *)
@@ -20,8 +25,9 @@ sig
   (** [add_edge u v g] adds an edge from [u] to [v] into the graph [g]. The two vertices must be already in the graph, or [Not_found] will be raised. *)
   val add_edge : vertex -> vertex -> t -> t
 
-  (** [reachable u v g] tests whether there is a path from [u] to [v] in the transitive closure of [g]. (This means reachability is always reflexive.) If either vertex is not in the graph, [Not_found] will be raised. *)
+  (** [reachable u v g] tests whether there is a path from [u] to [v] in the transitive and reflexive closure of [g]. This means reachability is reflexive even if no loop was explicitly added to the graph. If either vertex is not in the graph, [Not_found] will be raised. *)
   val reachable : vertex -> vertex -> t -> bool
 end
 
+(** The functor that takes a vertex module and outputs a graph module. *)
 module Make : functor (V : Map.OrderedType) -> S with type vertex = V.t
