@@ -1,0 +1,4 @@
+(test
+ (name Test)
+ (modules Test)
+ (libraries alcotest qcheck qcheck-alcotest kusariyarou))
