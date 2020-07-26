@@ -10,9 +10,9 @@ dev-repo: "git+https://github.com/favonia/kusariyarou.git"
 depends: [
   "dune" {>= "2.5"}
   "ocaml" {>= "4.08.0"}
-  "alcotest" {>= "1.2.1" & with_test}
-  "qcheck" {>= "0.13" & with_test}
-  "qcheck-alcotest" {>= "0.13" & with_test}
+  "alcotest" {>= "1.2.1" & with-test}
+  "qcheck" {>= "0.13" & with-test}
+  "qcheck-alcotest" {>= "0.13" & with-test}
   "odoc" {with-doc}
 ]
 build: [
