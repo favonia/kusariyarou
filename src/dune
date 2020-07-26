@@ -1,0 +1,3 @@
+(library
+ (name Kusariyarou)
+ (public_name kusariyarou))

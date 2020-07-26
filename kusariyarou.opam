@@ -1,0 +1,20 @@
+opam-version: "2.0"
+name: "kusariyarou"
+synopsis: "Incremental Transitive Reachability"
+maintainer: "favonia <favonia@gmail.com>"
+authors: "favonia <favonia@gmail.com>"
+license: "Apache 2.0"
+homepage: "https://github.com/favonia/kusariyarou"
+bug-reports: "https://github.com/favonia/kusariyarou/issues"
+dev-repo: "git+https://github.com/favonia/kusariyarou.git"
+depends: [
+  "dune" {>= "2.5"}
+  "ocaml" {>= "4.08.0"}
+  "odoc" {with-doc}
+]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "build" "-p" name "-j" jobs "@runtest"] {with-test}
+  ["dune" "build" "-p" name "-j" jobs "@doc"] {with-doc}
+]
