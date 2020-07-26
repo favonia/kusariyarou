@@ -11,7 +11,7 @@ let empty_graph = List.fold_left ~f:(fun g v -> IntGraph.add_vertex v g) ~init:I
 let test_reachability =
   QCheck_alcotest.to_alcotest ~long:true ~verbose:true @@
   let vertice_generator = QCheck.(choose @@ List.map ~f:always vertices) in
-  QCheck.Test.make ~count:100000 ~name:"all-pair reachability"
+  QCheck.Test.make ~count:10000 ~name:"all-pair reachability"
     QCheck.(small_list @@ pair vertice_generator vertice_generator) @@ fun edges ->
   let graph = List.fold_left ~f:(fun g (u, v) -> IntGraph.add_edge u v g) ~init:empty_graph edges in
   begin
@@ -23,5 +23,5 @@ let test_reachability =
 
 let () =
   Alcotest.run "Kusariyarou" [
-    "throughput (100000 cases)", [ test_reachability ]
+    "throughput (10000 cases)", [ test_reachability ]
   ]
