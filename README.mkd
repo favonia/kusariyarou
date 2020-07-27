@@ -1,0 +1,13 @@
+# Kusariyarou:: Incremental Reachability
+
+_Kusariyarou_ is a small OCaml package that loosely followed the paper _Amortized Efficiency of a Path Retrieval Data Structure_ by G.F. Italiano that implements the incremental transitive reachability for directed graphs. Please [consult the documentation](https://favonia.org/kusariyarou).
+
+**This library is part of a larger project that implements cubical type theory, and may be changed or merged at any time without notice.**
+
+## Installation
+
+You need OCaml 4.08.0 or newer. You can check out the source repository and install the latest version in development:
+```
+git clone https://github.com/favonia/kusariyarou.git
+opam install ./kusariyarou
+```

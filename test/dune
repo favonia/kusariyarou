@@ -2,3 +2,8 @@
  (name Test)
  (modules Test)
  (libraries alcotest qcheck qcheck-alcotest kusariyarou))
+
+(test
+ (name Throughput)
+ (modules Throughput)
+ (libraries alcotest qcheck qcheck-alcotest kusariyarou))
