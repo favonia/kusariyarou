@@ -16,7 +16,7 @@ sig
   (** The empty graph. *)
   val empty : t
 
-  (** [mem_vertex v g] tests whether the vertex [v] is in a graph [g]. *)
+  (** [mem_vertex v g] tests whether the vertex [v] is in the graph [g]. *)
   val mem_vertex : vertex -> t -> bool
 
   (** [add_vertex v g] adds the vertex [v] into the graph [g]. *)
