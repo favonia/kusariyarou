@@ -1,7 +1,7 @@
 (**
-   This library is based on "Amortized Efficiency of a Path Retrieval Data Structure" by G.F. Italiano, probably with O(log n) slowdown due to the use of {!module:Map}. This is intended to be used in the cases where graphs are relatively small.
+   This library is based on "Amortized Efficiency of a Path Retrieval Data Structure" by G.F. Italiano, probably with O(log n) slowdown due to the use of {!module:Map}. Moreover, the analysis in the paper does not apply to a persistent data structure design (here) that supports branching. In other words, the amortized bound might not hold if editing operations are applied on previous versions of graphs, though merely checking reachability is okay.
 
-   The amortized bound in general does not hold if one forks a graph (for example, adding different edges to the same graph to generate different graphs). However, due to its simplicity, the algorithm should be fine for small graphs.
+   This library is part of a larger project that implements cubical type theory, and may be changed or merged at any time.
 *)
 
 (** The interface of a graph. *)
